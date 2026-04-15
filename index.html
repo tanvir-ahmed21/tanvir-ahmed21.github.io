@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tanvir Ahmed — Agricultural Economist & Researcher</title>
+<meta name="description" content="Tanvir Ahmed — Agricultural Economist, Researcher at Khulna Agricultural University. Behavioral economics, climate change, and agricultural value chains."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --bg:        #080f0b;
+  --bg1:       #0c1610;
+  --bg2:       #101e14;
+  --bg3:       #162218;
+  --glass:     rgba(20,38,22,0.65);
+  --glass2:    rgba(255,255,255,0.03);
+  --border:    rgba(100,180,80,0.12);
+  --border2:   rgba(100,180,80,0.22);
+  --green:     #6fcf4a;
+  --green2:    #a8e07a;
+  --green3:    #d4f2b8;
+  --gold:      #e8b84b;
+  --gold2:     #f5d47a;
+  --teal:      #4ecdc4;
+  --text:      #edf2e9;
+  --text2:     #b8c9b0;
+  --text3:     #7a9470;
+  --serif:     'Cormorant Garamond', Georgia, serif;
+  --sans:      'Outfit', system-ui, sans-serif;
+  --mono:      'JetBrains Mono', monospace;
+  --r:         14px;
+  --r2:        24px;
+  --shadow:    0 8px 40px rgba(0,0,0,0.6);
+  --glow:      0 0 60px rgba(111,207,74,0.08);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--green);text-decoration:none;transition:color .2s}
+a:hover{color:var(--green2)}
+img{display:block;max-width:100%}
+::selection{background:rgba(111,207,74,0.25);color:var(--green3)}
+
+/* ═══════════════════════════════════════════
+   CANVAS BACKGROUND
+═══════════════════════════════════════════ */
+#bg-canvas{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;opacity:.45;
+}
+
+/* ═══════════════════════════════════════════
+   NOISE OVERLAY
+═══════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  opacity:.025;pointer-events:none;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════ */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:10px}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3rem;
+  transition:all .4s;
+}
+#nav.scrolled{
+  background:rgba(8,15,11,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:.8rem 3rem;
+  box-shadow:0 4px 30px rgba(0,0,0,0.5);
+}
+.nav-logo{
+  font-family:var(--serif);font-size:1.25rem;font-weight:300;
+  color:var(--text);letter-spacing:.06em;
+}
+.nav-logo span{color:var(--green);font-style:italic}
+.nav-links{display:flex;gap:2.2rem;list-style:none}
+.nav-links a{
+  font-size:.75rem;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text3);
+  position:relative;transition:color .2s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;right:0;
+  height:1px;background:var(--green);transform:scaleX(0);
+  transform-origin:left;transition:transform .3s;
+}
+.nav-links a:hover,
+.nav-links a.active{color:var(--green)}
+.nav-links a:hover::after,
+.nav-links a.active::after{transform:scaleX(1)}
+.nav-toggle{
+  display:none;background:none;border:1px solid var(--border2);
+  color:var(--text);cursor:pointer;padding:.4rem .7rem;border-radius:8px;font-size:1rem;
+}
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(8,15,11,0.97);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--serif);font-size:2rem;color:var(--text2);letter-spacing:.04em}
+.mobile-menu a:hover{color:var(--green)}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--text3);font-size:1.5rem;cursor:pointer}
+
+/* ═══════════════════════════════════════════
+   WRAPPER
+═══════════════════════════════════════════ */
+main{position:relative;z-index:2}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:5rem;
+  padding:9rem 3rem 5rem;
+  max-width:1200px;margin:0 auto;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;
+  color:var(--green);text-transform:uppercase;
+  margin-bottom:1.6rem;
+  animation:slideRight .8s ease both;
+}
+.hero-eyebrow::before{
+  content:'';display:block;width:28px;height:1px;background:var(--green);
+}
+.hero-name{
+  font-family:var(--serif);
+  font-size:clamp(3rem,6vw,5.5rem);
+  font-weight:300;line-height:1.0;
+  margin-bottom:.6rem;
+  animation:fadeUp .9s ease both;animation-delay:.1s;
+}
+.hero-name em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--green2),var(--teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-degree{
+  font-size:1rem;font-weight:300;color:var(--text3);
+  letter-spacing:.06em;margin-bottom:1.8rem;
+  animation:fadeUp .9s ease both;animation-delay:.2s;
+}
+.hero-bio{
+  font-size:.97rem;color:var(--text2);line-height:1.9;
+  max-width:480px;margin-bottom:2.5rem;
+  animation:fadeUp .9s ease both;animation-delay:.3s;
+}
+.hero-stats{
+  display:flex;gap:2.5rem;margin-bottom:2.8rem;
+  animation:fadeUp .9s ease both;animation-delay:.4s;
+}
+.h-stat{}
+.h-stat .n{
+  font-family:var(--serif);font-size:2.8rem;font-weight:300;
+  color:var(--green2);display:block;line-height:1;
+}
+.h-stat .l{
+  font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);
+}
+.hero-actions{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  animation:fadeUp .9s ease both;animation-delay:.5s;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--green);color:#060d08;
+  font-weight:600;font-size:.85rem;letter-spacing:.04em;
+  padding:.8rem 2rem;border-radius:100px;
+  transition:all .25s;box-shadow:0 4px 20px rgba(111,207,74,0.35);
+}
+.btn-primary:hover{background:var(--green2);color:#060d08;transform:translateY(-2px);box-shadow:0 8px 30px rgba(111,207,74,0.5)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:.5rem;
+  border:1px solid var(--border2);color:var(--text2);
+  font-size:.85rem;letter-spacing:.04em;
+  padding:.8rem 2rem;border-radius:100px;
+  transition:all .25s;
+}
+.btn-outline:hover{border-color:var(--green);color:var(--green);background:rgba(111,207,74,0.06)}
+
+/* Hero Image */
+.hero-visual{
+  position:relative;animation:fadeUp .9s .25s ease both;
+}
+.hero-img-frame{
+  position:relative;width:100%;max-width:420px;margin:0 auto;
+}
+.hero-img-frame::before{
+  content:'';position:absolute;
+  inset:-16px -16px 0 16px;
+  border:1px solid rgba(111,207,74,0.2);
+  border-radius:60% 40% 50% 50% / 40% 40% 60% 60%;
+  animation:morphBorder 8s ease-in-out infinite;
+  z-index:0;
+}
+.hero-img-frame::after{
+  content:'';position:absolute;
+  inset:-8px 8px 8px -8px;
+  background:linear-gradient(135deg,rgba(111,207,74,0.12),rgba(78,205,196,0.06));
+  border-radius:60% 40% 50% 50% / 40% 40% 60% 60%;
+  animation:morphBorder 8s 2s ease-in-out infinite;
+  z-index:0;
+}
+.hero-img-frame img{
+  position:relative;z-index:1;
+  width:100%;
+  border-radius:55% 45% 48% 52% / 42% 38% 62% 58%;
+  border:2px solid rgba(111,207,74,0.2);
+  object-fit:cover;aspect-ratio:4/5;
+  filter:brightness(.95) contrast(1.05) saturate(1.1);
+  animation:morphImg 8s ease-in-out infinite;
+}
+.hero-float-card{
+  position:absolute;bottom:-1rem;right:-1rem;z-index:2;
+  background:var(--glass);backdrop-filter:blur(16px);
+  border:1px solid var(--border2);border-radius:var(--r);
+  padding:.9rem 1.3rem;
+  box-shadow:var(--shadow);
+  min-width:180px;
+}
+.hero-float-card .fc-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.2rem}
+.hero-float-card .fc-val{font-family:var(--serif);font-size:1rem;color:var(--green2)}
+.hero-float-top{
+  position:absolute;top:1rem;left:-1.5rem;z-index:2;
+  background:var(--glass);backdrop-filter:blur(16px);
+  border:1px solid rgba(232,184,75,0.25);border-radius:100px;
+  padding:.5rem 1.1rem;font-size:.72rem;color:var(--gold2);
+  letter-spacing:.08em;
+}
+@keyframes morphBorder{
+  0%,100%{border-radius:60% 40% 50% 50% / 40% 40% 60% 60%}
+  50%{border-radius:40% 60% 45% 55% / 55% 45% 55% 45%}
+}
+@keyframes morphImg{
+  0%,100%{border-radius:55% 45% 48% 52% / 42% 38% 62% 58%}
+  50%{border-radius:45% 55% 52% 48% / 58% 62% 38% 42%}
+}
+
+/* ═══════════════════════════════════════════
+   SECTION COMMONS
+═══════════════════════════════════════════ */
+.s-wrap{padding:6rem 3rem;position:relative}
+.s-wrap.alt{background:var(--bg1)}
+.s-inner{max-width:1200px;margin:0 auto}
+.s-tag{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--green);
+  display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;
+}
+.s-tag::before{content:'';display:block;width:20px;height:1px;background:var(--green)}
+.s-title{
+  font-family:var(--serif);
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:300;color:var(--text);
+  margin-bottom:.5rem;line-height:1.15;
+}
+.s-sub{font-size:.9rem;color:var(--text3);margin-bottom:3.5rem;max-width:580px}
+.s-line{
+  width:50px;height:2px;margin:.8rem 0 2.8rem;
+  background:linear-gradient(90deg,var(--green),transparent);border-radius:2px;
+}
+
+/* Section divider */
+.s-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border2),transparent);
+  margin:0;
+}
+
+/* ═══════════════════════════════════════════
+   RESEARCH GRID
+═══════════════════════════════════════════ */
+.r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.r-card{
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--border);border-radius:var(--r2);
+  padding:2rem;
+  transition:all .35s;
+  position:relative;overflow:hidden;
+}
+.r-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(111,207,74,0.04),transparent);
+  opacity:0;transition:opacity .35s;
+}
+.r-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:var(--shadow),0 0 30px rgba(111,207,74,0.06)}
+.r-card:hover::before{opacity:1}
+.r-icon{font-size:1.8rem;margin-bottom:1.1rem;display:block}
+.r-card h3{
+  font-family:var(--serif);font-size:1.1rem;color:var(--green2);
+  margin-bottom:.6rem;line-height:1.3;
+}
+.r-card p{font-size:.85rem;color:var(--text3);line-height:1.7}
+
+/* ═══════════════════════════════════════════
+   PUBLICATIONS
+═══════════════════════════════════════════ */
+.pub-list{display:flex;flex-direction:column;gap:1.2rem}
+.pub-card{
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--border);border-radius:var(--r2);
+  padding:2rem 2.2rem;
+  display:grid;grid-template-columns:120px 1fr;gap:1.8rem;
+  align-items:start;transition:border-color .3s,transform .3s;
+  position:relative;overflow:hidden;
+}
+.pub-card::after{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--border2);
+  transition:background .3s;
+}
+.pub-card:hover{border-color:var(--border2);transform:translateX(4px)}
+.pub-card:hover::after{background:linear-gradient(180deg,var(--green),var(--teal))}
+.pub-card.published::after{background:linear-gradient(180deg,var(--green),var(--teal))}
+.pub-card.preprint::after{background:linear-gradient(180deg,var(--gold),var(--gold2))}
+.p-badge-wrap{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding-top:.2rem}
+.p-venue{
+  font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--gold);text-align:center;
+}
+.p-status{
+  font-size:.68rem;padding:.22rem .7rem;border-radius:100px;
+  border:1px solid var(--border);color:var(--text3);text-align:center;white-space:nowrap;
+}
+.p-status.pub{color:var(--green);border-color:rgba(111,207,74,.3);background:rgba(111,207,74,.06)}
+.p-status.pre{color:var(--gold);border-color:rgba(232,184,75,.3);background:rgba(232,184,75,.06)}
+.p-status.conf{color:var(--teal);border-color:rgba(78,205,196,.3);background:rgba(78,205,196,.06)}
+.pub-body h3{
+  font-family:var(--serif);font-size:1.05rem;color:var(--text);
+  margin-bottom:.5rem;line-height:1.45;
+}
+.pub-authors{font-size:.82rem;color:var(--text3);margin-bottom:.4rem}
+.pub-authors strong{color:var(--text2)}
+.pub-meta{font-size:.8rem;color:var(--text3);margin-bottom:.7rem;font-style:italic}
+.pub-link{
+  display:inline-flex;align-items:center;gap:.3rem;
+  font-size:.78rem;color:var(--green);font-weight:500;
+  padding:.25rem .7rem;border:1px solid rgba(111,207,74,.25);
+  border-radius:100px;background:rgba(111,207,74,.06);
+  transition:all .2s;
+}
+.pub-link:hover{background:rgba(111,207,74,.15);border-color:rgba(111,207,74,.5);color:var(--green2)}
+
+/* ═══════════════════════════════════════════
+   TIMELINE
+═══════════════════════════════════════════ */
+.timeline{position:relative;padding-left:2.5rem}
+.timeline::before{
+  content:'';position:absolute;left:7px;top:10px;bottom:0;
+  width:1px;
+  background:linear-gradient(180deg,var(--green),transparent);
+}
+.t-item{position:relative;margin-bottom:2.8rem}
+.t-dot{
+  position:absolute;left:-2.5rem;top:6px;
+  width:15px;height:15px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--green);
+  box-shadow:0 0 12px rgba(111,207,74,.4);
+  transition:all .3s;
+}
+.t-item:hover .t-dot{background:var(--green);box-shadow:0 0 20px rgba(111,207,74,.7)}
+.t-period{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--green);margin-bottom:.35rem;
+}
+.t-item h3{
+  font-family:var(--serif);font-size:1.15rem;color:var(--text);margin-bottom:.2rem;
+}
+.t-place{font-size:.85rem;color:var(--text3);margin-bottom:.5rem}
+.t-detail{font-size:.83rem;color:rgba(237,242,233,.55);line-height:1.7}
+.t-note{
+  display:inline-block;margin-top:.3rem;
+  font-size:.75rem;padding:.18rem .65rem;border-radius:100px;
+  background:rgba(232,184,75,.1);border:1px solid rgba(232,184,75,.25);
+  color:var(--gold2);
+}
+.t-bullets{margin-top:.5rem;padding-left:1.1rem;list-style:none}
+.t-bullets li{
+  font-size:.83rem;color:rgba(237,242,233,.55);margin-bottom:.25rem;line-height:1.65;
+  position:relative;
+}
+.t-bullets li::before{
+  content:'→';position:absolute;left:-1.1rem;color:var(--green);font-size:.7rem;top:.1rem;
+}
+
+/* ═══════════════════════════════════════════
+   AWARDS
+═══════════════════════════════════════════ */
+.aw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+.aw-card{
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.8rem;
+  transition:all .35s;position:relative;overflow:hidden;
+}
+.aw-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0;transition:opacity .35s;
+}
+.aw-card:hover{border-color:rgba(232,184,75,.3);transform:translateY(-4px)}
+.aw-card:hover::before{opacity:1}
+.aw-icon{font-size:1.8rem;margin-bottom:1rem;display:block}
+.aw-year{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:.3rem;
+}
+.aw-card h3{
+  font-family:var(--serif);font-size:1rem;color:var(--green2);
+  margin-bottom:.4rem;line-height:1.35;
+}
+.aw-org{font-size:.8rem;color:var(--text3)}
+.aw-desc{font-size:.82rem;color:rgba(237,242,233,.5);margin-top:.5rem;line-height:1.65}
+
+/* ═══════════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════════ */
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.sk-group{}
+.sk-head{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.sk-head::after{content:'';flex:1;height:1px;background:var(--border)}
+.tags-wrap{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{
+  font-size:.78rem;padding:.3rem .85rem;border-radius:100px;
+  background:rgba(111,207,74,.07);
+  border:1px solid rgba(111,207,74,.16);
+  color:var(--green2);transition:all .2s;cursor:default;
+}
+.tag:hover{background:rgba(111,207,74,.15);border-color:rgba(111,207,74,.35);transform:translateY(-1px)}
+
+/* ═══════════════════════════════════════════
+   TRAINING
+═══════════════════════════════════════════ */
+.tr-list{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+}
+.tr-item{
+  background:var(--glass2);
+  border:1px solid var(--border);border-radius:var(--r);
+  padding:1.3rem 1.5rem;
+  transition:border-color .3s,background .3s;
+}
+.tr-item:hover{background:var(--glass);border-color:var(--border2)}
+.tr-icon{font-size:1.3rem;margin-bottom:.6rem}
+.tr-item h4{font-family:var(--serif);font-size:.95rem;color:var(--green2);margin-bottom:.25rem}
+.tr-item p{font-size:.78rem;color:var(--text3)}
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.c-items{}
+.c-item{
+  display:flex;align-items:flex-start;gap:1.2rem;
+  padding:1.2rem 0;border-bottom:1px solid var(--border);
+}
+.c-item:last-child{border:none}
+.c-ico{
+  width:42px;height:42px;flex-shrink:0;
+  border-radius:50%;
+  background:rgba(111,207,74,.1);
+  border:1px solid rgba(111,207,74,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+}
+.c-lbl{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:.2rem}
+.c-val{font-size:.9rem;color:var(--text)}
+.c-val a{color:var(--text)}
+.c-val a:hover{color:var(--green)}
+.refs-stack{display:flex;flex-direction:column;gap:1rem}
+.ref-card{
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.4rem 1.6rem;
+  display:flex;align-items:flex-start;gap:1.2rem;
+  transition:border-color .3s;
+}
+.ref-card:hover{border-color:var(--border2)}
+.ref-av{
+  width:46px;height:46px;flex-shrink:0;border-radius:50%;
+  background:linear-gradient(135deg,rgba(111,207,74,.25),rgba(78,205,196,.15));
+  border:1px solid rgba(111,207,74,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:600;font-size:.85rem;color:var(--green2);
+}
+.ref-name{font-size:.92rem;font-weight:500;color:var(--text);margin-bottom:.2rem}
+.ref-role{font-size:.78rem;color:var(--text3);line-height:1.4;margin-bottom:.3rem}
+.ref-email{font-size:.78rem;color:var(--green)}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  position:relative;z-index:2;
+  text-align:center;padding:2.5rem 2rem;
+  border-top:1px solid var(--border);
+  background:var(--bg);
+}
+.footer-name{font-family:var(--serif);font-size:1.5rem;color:var(--text2);margin-bottom:.3rem;font-weight:300}
+.footer-email{font-size:.82rem;color:var(--text3)}
+.back-top{
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-top:1rem;font-size:.75rem;
+  color:var(--text3);cursor:pointer;letter-spacing:.08em;
+  transition:color .2s;
+}
+.back-top:hover{color:var(--green)}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.in{opacity:1;transform:translateX(0)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .r-grid{grid-template-columns:repeat(2,1fr)}
+  .aw-grid{grid-template-columns:repeat(2,1fr)}
+  .sk-grid{grid-template-columns:repeat(2,1fr)}
+  .tr-list{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  #nav{padding:.9rem 1.5rem}
+  #nav.scrolled{padding:.8rem 1.5rem}
+  .nav-links{display:none}
+  .nav-toggle{display:block}
+  #hero{grid-template-columns:1fr;text-align:center;gap:3rem;padding:7rem 1.5rem 4rem}
+  .hero-bio{margin:0 auto 2.5rem}
+  .hero-stats{justify-content:center}
+  .hero-actions{justify-content:center}
+  .hero-img-frame{max-width:280px}
+  .s-wrap{padding:4rem 1.5rem}
+  .r-grid,.aw-grid,.sk-grid,.tr-list{grid-template-columns:1fr}
+  .pub-card{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr;gap:2.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Animated Background Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#hero" onclick="toggleMenu()">Home</a>
+  <a href="#research" onclick="toggleMenu()">Research</a>
+  <a href="#publications" onclick="toggleMenu()">Publications</a>
+  <a href="#experience" onclick="toggleMenu()">Experience</a>
+  <a href="#awards" onclick="toggleMenu()">Awards</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- Navigation -->
+<nav id="nav">
+  <div class="nav-logo">Tanvir <span>Ahmed</span></div>
+  <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Agricultural Economist &amp; Researcher</div>
+    <h1 class="hero-name">Tanvir<br><em>Ahmed</em></h1>
+    <p class="hero-degree">BSc in Agricultural Economics &amp; Agribusiness Studies</p>
+    <p class="hero-bio">Researcher in behavioral economics, climate change, and agricultural value chains. Bridging econometrics and development policy to address sustainability and food security challenges in Bangladesh and South Asia.</p>
+    <div class="hero-stats">
+      <div class="h-stat"><span class="n" data-count="5">0</span><span class="l">Publications</span></div>
+      <div class="h-stat"><span class="n">3.66</span><span class="l">CGPA / 4.00</span></div>
+      <div class="h-stat"><span class="n" data-count="2">0</span><span class="l">Conferences</span></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get in Touch →</a>
+      <a href="#publications" class="btn-outline">View Research</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-img-frame">
+      <img src="https://tanvir-ahmed21.github.io/IMG_20250222_151511.jpg" alt="Tanvir Ahmed"/>
+      <div class="hero-float-card" style="animation:float 4s ease-in-out infinite">
+        <div class="fc-label">Affiliation</div>
+        <div class="fc-val">Khulna Agricultural University</div>
+      </div>
+      <div class="hero-float-top" style="animation:float 4s 1s ease-in-out infinite">
+        📍 Narsingdi, Dhaka
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ════════════════════ RESEARCH ════════════════════ -->
+<section class="s-wrap" id="research">
+  <div class="s-inner">
+    <div class="s-tag reveal">Focus Areas</div>
+    <h2 class="s-title reveal">Research Interests</h2>
+    <p class="s-sub reveal">Behavioral economics, sustainability, and agricultural value chain analysis</p>
+    <div class="s-line reveal"></div>
+    <div class="r-grid">
+      <div class="r-card reveal"><span class="r-icon">📱</span><h3>Behavioral Economics &amp; Digital Consumption</h3><p>Studying digital behaviors, doomscrolling, and their socioeconomic and health implications among university students.</p></div>
+      <div class="r-card reveal"><span class="r-icon">🌍</span><h3>Climate Change &amp; Sustainability</h3><p>Measuring agricultural carbon footprints, environmental awareness, and low-carbon behavior determinants.</p></div>
+      <div class="r-card reveal"><span class="r-icon">🌾</span><h3>Agricultural Value Chains</h3><p>Analyzing digital liquidity, market segmentation, and price dispersion in agricultural markets.</p></div>
+      <div class="r-card reveal"><span class="r-icon">🏥</span><h3>Public Health &amp; Development Policy</h3><p>Women's empowerment, nutrition outcomes, and the double burden of malnutrition in South Asia.</p></div>
+      <div class="r-card reveal"><span class="r-icon">📈</span><h3>Econometrics &amp; Data Analytics</h3><p>Applied econometric modeling, regression analysis, and policy-relevant statistical inference using STATA and SPSS.</p></div>
+      <div class="r-card reveal"><span class="r-icon">🤝</span><h3>Agribusiness Innovation</h3><p>Production economics, agricultural finance, jute production efficiency, and entrepreneurship in agri-food systems.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ════════════════════ PUBLICATIONS ════════════════════ -->
+<section class="s-wrap alt" id="publications">
+  <div class="s-inner">
+    <div class="s-tag reveal">Scholarly Output</div>
+    <h2 class="s-title reveal">Publications &amp; Conferences</h2>
+    <p class="s-sub reveal">Journal articles and conference presentations in agricultural economics and social science</p>
+    <div class="s-line reveal"></div>
+    <div class="pub-list">
+
+      <!-- PUBLISHED -->
+      <div class="pub-card published reveal">
+        <div class="p-badge-wrap">
+          <span class="p-venue">NBSEH · 2026</span>
+          <span class="p-status pub">● Published</span>
+        </div>
+        <div class="pub-body">
+          <h3>Determinants of Household Willingness to Pay for Improved Urban Air Quality: Evidence from Khulna City, Bangladesh</h3>
+          <p class="pub-authors"><strong>Ahmed, T.</strong>, Arpa, N. J., &amp; Al Zabir, A. (First Author)</p>
+          <p class="pub-meta">Natural Built Social Environment Health, 2(2), 173–199 · 2026</p>
+          <a class="pub-link" href="https://doi.org/10.63095/NBSEH.26.553041" target="_blank">View Published Article →</a>
+        </div>
+      </div>
+
+      <!-- PREPRINT -->
+      <div class="pub-card preprint reveal">
+        <div class="p-badge-wrap">
+          <span class="p-venue">Research Square</span>
+          <span class="p-status pre">◈ Preprint</span>
+        </div>
+        <div class="pub-body">
+          <h3>Psychological Determinants of Low Carbon Digital Behavior among University Students in Bangladesh</h3>
+          <p class="pub-authors">Arpa, N. J., <strong>Ahmed, T.</strong>, Al Zabir, A., et al.</p>
+          <p class="pub-meta">Research Square · March 10, 2026</p>
+          <a class="pub-link" href="https://doi.org/10.21203/rs.3.rs-8775589/v1" target="_blank">View Preprint →</a>
+        </div>
+      </div>
+
+      <!-- SUBMITTED — no link -->
+      <div class="pub-card reveal">
+        <div class="p-badge-wrap">
+          <span class="p-venue">Psych. Studies</span>
+          <span class="p-status">◌ Under Review</span>
+        </div>
+        <div class="pub-body">
+          <h3>The Mediating Role of Sleep Quality in the Relationship between Doomscrolling and Academic Burnout in Bangladeshi Undergraduates</h3>
+          <p class="pub-authors"><strong>Ahmed, T.</strong>, Arpa, N. J., &amp; Al Zabir, A. (First Author)</p>
+          <p class="pub-meta">Submitted to Psychological Studies · 2026</p>
+        </div>
+      </div>
+
+      <!-- SUBMITTED — no link -->
+      <div class="pub-card reveal">
+        <div class="p-badge-wrap">
+          <span class="p-venue">J. Emerg. Global Health</span>
+          <span class="p-status">◌ Under Review</span>
+        </div>
+        <div class="pub-body">
+          <h3>Women's Empowerment and Nutrition Outcomes Relevant to the Double Burden of Malnutrition in South Asia: A Systematic Review</h3>
+          <p class="pub-authors"><strong>Ahmed, T.</strong>, Arpa, N. J., Islam, S., &amp; Chandra, A. S. (Co-First Author)</p>
+          <p class="pub-meta">Submitted to Journal of Emerging Global Health · 2026</p>
+        </div>
+      </div>
+
+      <!-- SUBMITTED — no link -->
+      <div class="pub-card reveal">
+        <div class="p-badge-wrap">
+          <span class="p-venue">J. Interdisc. Econ.</span>
+          <span class="p-status">◌ Under Review</span>
+        </div>
+        <div class="pub-body">
+          <h3>Does Digital Liquidity Deepen Market Segmentation? Network Reach and Price Dispersion in Agricultural Value Chains</h3>
+          <p class="pub-authors"><strong>Ahmed, T.</strong>, Arpa, N. J., &amp; Al Zabir, A. (First Author)</p>
+          <p class="pub-meta">Submitted to Journal of Interdisciplinary Economics · 2026</p>
+        </div>
+      </div>
+
+      <!-- CONFERENCE -->
+      <div class="pub-card reveal">
+        <div class="p-badge-wrap">
+          <span class="p-venue">ICBS-I</span>
+          <span class="p-status conf">● Presented · 2025</span>
+        </div>
+        <div class="pub-body">
+          <h3>Digital Carbon Footprints and Consumption Patterns: Assessing Awareness among University Students in Bangladesh</h3>
+          <p class="pub-authors"><strong>Ahmed, T.</strong>, Arpa, N. J., Mitu, N. &amp; Ayesha (First Author)</p>
+          <p class="pub-meta">1st International Conference on Bangladesh Studies (ICBS-I) · April 20, 2025</p>
+        </div>
+      </div>
+
+      <!-- CONFERENCE POSTER -->
+      <div class="pub-card reveal">
+        <div class="p-badge-wrap">
+          <span class="p-venue">UniV Poster</span>
+          <span class="p-status conf">🥈 Silver Award</span>
+        </div>
+        <div class="pub-body">
+          <h3>Measuring and Forecasting Agricultural Carbon Footprints in Bangladesh: Hotspot Identification and Regression-Based Policy Recommendation</h3>
+          <p class="pub-authors"><strong>Ahmed, T.</strong></p>
+          <p class="pub-meta">UniV 3rd International Poster Competition · Awarded Silver Explorer Certificate · 2025</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ════════════════════ EXPERIENCE ════════════════════ -->
+<section class="s-wrap" id="experience">
+  <div class="s-inner">
+    <div class="s-tag reveal">Professional Journey</div>
+    <h2 class="s-title reveal">Work Experience</h2>
+    <div class="s-line reveal"></div>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <p class="t-period">2026 — Present</p>
+        <h3>Research Assistant</h3>
+        <p class="t-place">Khulna Agricultural University Research System (KAURES), Khulna</p>
+        <ul class="t-bullets">
+          <li>Appointed for funded research on Economic, Financial, and Efficiency Analysis of Jute Production in Bangladesh</li>
+          <li>Conduct literature review, field survey data collection, and stakeholder interviews</li>
+          <li>Perform data entry, processing, and econometric analysis; assist in report writing</li>
+        </ul>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <p class="t-period">May 2025 — Present</p>
+        <h3>Assistant Director — Language Skill Development Unit</h3>
+        <p class="t-place">Univ, Dhaka</p>
+        <ul class="t-bullets">
+          <li>Coordinate research and academic development activities</li>
+          <li>Supervise intern teams and manage project communication</li>
+          <li>Contribute to strategic planning and innovation initiatives</li>
+        </ul>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <p class="t-period">October 2024 — Present</p>
+        <h3>Research Trainer</h3>
+        <p class="t-place">Bangladesh Institute of Innovative Health Research (BIIHR), Dhaka</p>
+        <ul class="t-bullets">
+          <li>Conduct training on research methodologies and tools — Google Forms, Kobo Toolbox, STATA, AI tools</li>
+          <li>Mentor participants in practical research applications; update training materials</li>
+        </ul>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <p class="t-period">September 2024 — May 2025</p>
+        <h3>Intern — Language Skill Development Unit</h3>
+        <p class="t-place">Univ, Dhaka</p>
+        <span class="t-note">🏆 Best Intern of the Month · May 2025</span>
+        <ul class="t-bullets">
+          <li>Moderated academic sessions and workshops; communicated with participants and instructors</li>
+          <li>Assisted in research coordination and idea development</li>
+        </ul>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <p class="t-period">2024 — 2025</p>
+        <h3>Content Lead</h3>
+        <p class="t-place">Bangladesh Institute of Innovative Health Research (BIIHR), Dhaka</p>
+        <ul class="t-bullets">
+          <li>Led a team of 10 members managing academic content planning and supervision</li>
+        </ul>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <p class="t-period">2023 — Present</p>
+        <h3>Assistant Coordinator — Disaster Economics Unit</h3>
+        <p class="t-place">Disaster Perception, Dhaka</p>
+        <ul class="t-bullets">
+          <li>Support research coordination and thematic content development in disaster economics</li>
+        </ul>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-dot"></div>
+        <p class="t-period">March 2020 — Present</p>
+        <h3>Co-Founder</h3>
+        <p class="t-place">Fakibaz Gobeshok (Research Platform), Khulna</p>
+        <ul class="t-bullets">
+          <li>Co-founded a research-focused academic platform promoting research culture among students</li>
+          <li>Led content strategy and community engagement initiatives</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div style="margin-top:4rem">
+      <div class="s-tag reveal">Academic Path</div>
+      <h2 class="s-title reveal">Education</h2>
+      <div class="s-line reveal"></div>
+      <div class="timeline">
+        <div class="t-item reveal">
+          <div class="t-dot"></div>
+          <p class="t-period">Expected April 2026</p>
+          <h3>BSc in Agricultural Economics &amp; Agribusiness Studies</h3>
+          <p class="t-place">Khulna Agricultural University, Khulna, Bangladesh</p>
+          <p class="t-detail">CGPA: 3.659 / 4.00 (Level 4, Semester II)</p>
+          <p class="t-detail" style="margin-top:.4rem">Coursework: Microeconomics, Macroeconomics, Mathematical Economics, Econometrics, Regression Analysis, Agricultural Policy &amp; Planning, Production Economics, Agricultural Marketing, Agribusiness Management, Agricultural Finance, Environmental Economics, Research Methodology, Entrepreneurship, HRM.</p>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-dot"></div>
+          <p class="t-period">2020</p>
+          <h3>Higher Secondary School Certificate (Science)</h3>
+          <p class="t-place">Abdul Kadir Mollah City College, Dhaka, Bangladesh</p>
+          <p class="t-detail">GPA: 5.00 / 5.00 — Perfect Score</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Training -->
+    <div style="margin-top:4rem">
+      <div class="s-tag reveal">Professional Development</div>
+      <h2 class="s-title reveal">Training &amp; Certifications</h2>
+      <div class="s-line reveal"></div>
+      <div class="tr-list">
+        <div class="tr-item reveal"><div class="tr-icon">🔬</div><h4>Research Course: Beginning to Advance</h4><p>Research Help Bangladesh · 2025</p></div>
+        <div class="tr-item reveal"><div class="tr-icon">🌾</div><h4>Field Attachment: Rural Development &amp; Institutions</h4><p>Bangladesh Academy for Rural Development (BARD) · 2024</p></div>
+        <div class="tr-item reveal"><div class="tr-icon">🚜</div><h4>Extension Field Training Certificate</h4><p>Khulna Agricultural University · July 7–12, 2025</p></div>
+        <div class="tr-item reveal"><div class="tr-icon">📄</div><h4>Mastering Academic CV Workshop</h4><p>UniV · 2024</p></div>
+        <div class="tr-item reveal"><div class="tr-icon">🧠</div><h4>Emotional Intelligence Training</h4><p>BIIHR, Bangladesh · 2024</p></div>
+        <div class="tr-item reveal"><div class="tr-icon">🗣️</div><h4>English Spoken Course — 45 Hours</h4><p>Lexicon ELTC · 2023</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ════════════════════ AWARDS ════════════════════ -->
+<section class="s-wrap alt" id="awards">
+  <div class="s-inner">
+    <div class="s-tag reveal">Recognition</div>
+    <h2 class="s-title reveal">Honors &amp; Awards</h2>
+    <div class="s-line reveal"></div>
+    <div class="aw-grid">
+      <div class="aw-card reveal"><span class="aw-icon">🥈</span><p class="aw-year">Feb 22, 2025</p><h3>1st Runner-Up — Hult Prize On-Campus</h3><p class="aw-org">Khulna Agricultural University</p><p class="aw-desc">Secured 2nd position among competing teams for innovative social business solution. Recognized for entrepreneurship, problem-solving, and presentation excellence.</p></div>
+      <div class="aw-card reveal"><span class="aw-icon">🏆</span><p class="aw-year">Feb 25, 2025</p><h3>Semifinalist — PRAN-RFL Brandstorm 2025</h3><p class="aw-org">Khulna University Business Club (KUBC)</p><p class="aw-desc">Reached the semifinal round in this national business strategy competition.</p></div>
+      <div class="aw-card reveal"><span class="aw-icon">⭐</span><p class="aw-year">May 2025</p><h3>Best Intern of the Month</h3><p class="aw-org">Language Skills Development Unit (LSDU), UniV, Dhaka</p><p class="aw-desc">Recognized for outstanding leadership and contribution to research coordination.</p></div>
+      <div class="aw-card reveal"><span class="aw-icon">🌿</span><p class="aw-year">Jun 5, 2025</p><h3>2nd Position — Enviro Quiz, Enviro Fest 2.0</h3><p class="aw-org">EnvoLead Ltd. &amp; Bangladesh Agricultural Olympiad</p><p class="aw-desc">Awarded for excellence in environmental knowledge and strong understanding of sustainability and climate issues.</p></div>
+      <div class="aw-card reveal"><span class="aw-icon">📊</span><p class="aw-year">Jun 8, 2024</p><h3>Qualified Candidate — Bangladesh Economics Olympiad</h3><p class="aw-org">National-Level Competition, Bangladesh</p><p class="aw-desc">Qualified preliminary selection round of this prestigious national economics competition.</p></div>
+      <div class="aw-card reveal"><span class="aw-icon">🌱</span><p class="aw-year">Apr 5, 2024</p><h3>Participant — Agricultural Olympiad Season 3</h3><p class="aw-org">Bangladesh Agricultural Olympiad</p><p class="aw-desc">Competed in the national-level agricultural knowledge competition.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ════════════════════ SKILLS ════════════════════ -->
+<section class="s-wrap" id="skills">
+  <div class="s-inner">
+    <div class="s-tag reveal">Expertise</div>
+    <h2 class="s-title reveal">Skills &amp; Tools</h2>
+    <div class="s-line reveal"></div>
+    <div class="sk-grid">
+      <div>
+        <div class="sk-head reveal">Computer &amp; Software</div>
+        <div class="tags-wrap reveal">
+          <span class="tag">MS Office (Advanced)</span>
+          <span class="tag">STATA (Intermediate)</span>
+          <span class="tag">SPSS (Intermediate)</span>
+          <span class="tag">NVivo (Advanced)</span>
+          <span class="tag">Mendeley (Advanced)</span>
+          <span class="tag">Zotero (Advanced)</span>
+          <span class="tag">Google Forms</span>
+          <span class="tag">Kobo Toolbox</span>
+          <span class="tag">Rayyan</span>
+        </div>
+      </div>
+      <div>
+        <div class="sk-head reveal">Languages</div>
+        <div class="tags-wrap reveal">
+          <span class="tag">Bangla — Native</span>
+          <span class="tag">English Reading — B2</span>
+          <span class="tag">English Speaking — B1–B2</span>
+          <span class="tag">English Writing — B1</span>
+        </div>
+      </div>
+      <div>
+        <div class="sk-head reveal">Research Domains</div>
+        <div class="tags-wrap reveal">
+          <span class="tag">Behavioral Economics</span>
+          <span class="tag">Digital Consumption</span>
+          <span class="tag">Climate &amp; Sustainability</span>
+          <span class="tag">Agricultural Value Chains</span>
+          <span class="tag">Public Health Policy</span>
+          <span class="tag">Systematic Review</span>
+          <span class="tag">Econometrics</span>
+          <span class="tag">Academic Mentorship</span>
+          <span class="tag">Agribusiness Innovation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
+<!-- ════════════════════ CONTACT ════════════════════ -->
+<section class="s-wrap alt" id="contact">
+  <div class="s-inner">
+    <div class="s-tag reveal">Get in Touch</div>
+    <h2 class="s-title reveal">Contact</h2>
+    <p class="s-sub reveal">Open to research collaborations, academic discussions, and graduate opportunities</p>
+    <div class="s-line reveal"></div>
+    <div class="contact-wrap">
+      <div class="c-items">
+        <div class="c-item reveal">
+          <div class="c-ico">✉️</div>
+          <div><p class="c-lbl">Email</p><p class="c-val"><a href="mailto:tanvirahmedswapnil@gmail.com">tanvirahmedswapnil@gmail.com</a></p></div>
+        </div>
+        <div class="c-item reveal">
+          <div class="c-ico">📞</div>
+          <div><p class="c-lbl">Phone</p><p class="c-val">+880 1521 122 625</p></div>
+        </div>
+        <div class="c-item reveal">
+          <div class="c-ico">🔗</div>
+          <div><p class="c-lbl">LinkedIn</p><p class="c-val"><a href="http://www.linkedin.com/in/tanvirahmed212003" target="_blank">linkedin.com/in/tanvirahmed212003</a></p></div>
+        </div>
+        <div class="c-item reveal">
+          <div class="c-ico">📍</div>
+          <div><p class="c-lbl">Location</p><p class="c-val">Narsingdi, Dhaka, Bangladesh</p></div>
+        </div>
+        <div class="c-item reveal">
+          <div class="c-ico">🎓</div>
+          <div><p class="c-lbl">Affiliation</p><p class="c-val">Khulna Agricultural University<br>Khulna, Bangladesh</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="s-tag reveal" style="margin-bottom:1.2rem">Academic References</div>
+        <div class="refs-stack">
+          <div class="ref-card reveal">
+            <div class="ref-av">JI</div>
+            <div>
+              <p class="ref-name">Md Jahurul Islam</p>
+              <p class="ref-role">Assistant Professor, Department of Agricultural Economics &amp; Agribusiness Studies, Khulna Agricultural University</p>
+              <a class="ref-email" href="mailto:jahurul.bsmrau@gmail.com">jahurul.bsmrau@gmail.com · +8801715-299022</a>
+            </div>
+          </div>
+          <div class="ref-card reveal">
+            <div class="ref-av">AZ</div>
+            <div>
+              <p class="ref-name">Abdullah Al Zabir</p>
+              <p class="ref-role">Assistant Director, Seed &amp; Horticulture Wing, BADC, Dhaka · PhD Candidate, SERD, Asian Institute of Technology, Thailand</p>
+              <a class="ref-email" href="mailto:zabir.sylau@gmail.com">zabir.sylau@gmail.com · +66 062 869 4839</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <p class="footer-name">Tanvir Ahmed</p>
+  <p class="footer-email"><a href="mailto:tanvirahmedswapnil@gmail.com">tanvirahmedswapnil@gmail.com</a></p>
+  <p style="font-size:.75rem;color:var(--text3);margin-top:.5rem">© 2026 · Khulna Agricultural University · Bangladesh</p>
+  <a class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</a>
+</footer>
+
+<script>
+/* ── Animated particle canvas ── */
+(function(){
+  const c=document.getElementById('bg-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  for(let i=0;i<70;i++){
+    pts.push({
+      x:Math.random()*2000,y:Math.random()*2000,
+      vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,
+      r:Math.random()*1.8+.4,
+      a:Math.random()*.5+.15
+    })
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(111,207,74,${p.a})`;
+      ctx.fill();
+    });
+    // connect nearby
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<140){
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);
+          ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(111,207,74,${.12*(1-d/140)})`;
+          ctx.lineWidth=.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── Nav scroll effect ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  // active section
+  const secs=['hero','research','publications','experience','awards','skills','contact'];
+  let cur='hero';
+  secs.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&window.scrollY>=el.offsetTop-180)cur=id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
+  });
+});
+
+/* ── Mobile menu ── */
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ── Scroll reveal ── */
+const ro=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      e.target.style.transitionDelay=(i%5)*.09+'s';
+      e.target.classList.add('in');
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>ro.observe(el));
+
+/* ── Counter animation ── */
+function animateCount(el){
+  const target=+el.dataset.count;
+  let c=0;const step=target/40;
+  const t=setInterval(()=>{
+    c=Math.min(c+step,target);
+    el.textContent=Math.round(c);
+    if(c>=target)clearInterval(t);
+  },35);
+}
+const co=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&e.target.dataset.count){
+      animateCount(e.target);co.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+</script>
+</body>
+</html>
