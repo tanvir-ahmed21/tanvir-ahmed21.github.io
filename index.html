@@ -446,6 +446,28 @@ main{position:relative;z-index:2}
 .aw-org{font-size:.8rem;color:var(--text3)}
 .aw-desc{font-size:.82rem;color:rgba(237,242,233,.5);margin-top:.5rem;line-height:1.65}
 
+/* Peer Review */
+.rv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.3rem}
+.rv-card{
+  background:var(--glass2);border:1px solid var(--border);border-radius:var(--r2);
+  padding:2rem;position:relative;overflow:hidden;transition:.3s;
+}
+.rv-card::before{content:'';position:absolute;inset:0;border-radius:var(--r2);padding:1px;
+  background:linear-gradient(135deg,var(--teal),transparent 60%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.3s}
+.rv-card:hover{border-color:rgba(78,205,196,.3);transform:translateY(-4px)}
+.rv-card:hover::before{opacity:1}
+.rv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
+.rv-icon{font-size:1.8rem}
+.rv-badge{font-size:.7rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--teal);border:1px solid rgba(78,205,196,.3);background:rgba(78,205,196,.06);
+  padding:.3rem .7rem;border-radius:99px;white-space:nowrap}
+.rv-card h3{font-family:var(--serif);font-size:1.15rem;color:var(--text);margin-bottom:.4rem}
+.rv-org{font-size:.82rem;color:var(--text3);margin-bottom:.7rem}
+.rv-desc{font-size:.84rem;color:rgba(237,242,229,.55);line-height:1.65}
+@media(max-width:700px){.rv-grid{grid-template-columns:1fr}}
+
 /* ═══════════════════════════════════════════
    SKILLS
 ═══════════════════════════════════════════ */
@@ -594,6 +616,7 @@ footer{
   <a href="#research" onclick="toggleMenu()">Research</a>
   <a href="#publications" onclick="toggleMenu()">Publications</a>
   <a href="#conferences" onclick="toggleMenu()">Conferences</a>
+  <a href="#peer-review" onclick="toggleMenu()">Peer Review</a>
   <a href="#experience" onclick="toggleMenu()">Experience</a>
   <a href="#awards" onclick="toggleMenu()">Awards</a>
   <a href="#skills" onclick="toggleMenu()">Skills</a>
@@ -609,6 +632,7 @@ footer{
     <li><a href="#research">Research</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#conferences">Conferences</a></li>
+    <li><a href="#peer-review">Peer Review</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#awards">Awards</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -623,11 +647,12 @@ footer{
   <div class="hero-text">
     <div class="hero-eyebrow">Agricultural Economist &amp; Researcher</div>
     <h1 class="hero-name">Tanvir<br><em>Ahmed</em></h1>
-    <p class="hero-degree">BSc in Agricultural Economics &amp; Agribusiness Studies</p>
+    <p class="hero-degree">BSc in Agricultural Economics</p>
     <p class="hero-bio">Researcher in behavioral economics, climate change, and agricultural value chains. Bridging econometrics and development policy to address sustainability and food security challenges in Bangladesh and South Asia.</p>
     <div class="hero-stats">
       <div class="h-stat"><span class="n" data-count="6">0</span><span class="l">Publications</span></div>
      <div class="h-stat"><span class="n" data-count="2">0</span><span class="l">Conferences</span></div>
+     <div class="h-stat"><span class="n" data-count="3">0</span><span class="l">Peer Reviews</span></div>
     </div>
     <div class="hero-actions">
       <a href="#contact" class="btn-primary">Get in Touch →</a>
@@ -810,6 +835,38 @@ footer{
 
 <div class="s-divider"></div>
 
+<!-- ════════════════════ PEER REVIEW ════════════════════ -->
+<section class="s-wrap alt" id="peer-review">
+  <div class="s-inner">
+    <div class="s-tag reveal">Academic Service</div>
+    <h2 class="s-title reveal">Peer Review Activities</h2>
+    <p class="s-sub reveal">Reviewing manuscripts for international peer-reviewed journals</p>
+    <div class="s-line reveal"></div>
+    <div class="rv-grid">
+      <div class="rv-card reveal">
+        <div class="rv-top">
+          <span class="rv-icon">🔍</span>
+          <span class="rv-badge">Active Reviewer</span>
+        </div>
+        <h3>PLOS ONE</h3>
+        <p class="rv-org">PLOS · Since October 2026</p>
+        <p class="rv-desc">Active reviewer for PLOS ONE, having reviewed 2 manuscripts for the journal, including a submission on scaling agricultural resilience through spatial functional specialization of sustainable practices under multiple stresses.</p>
+      </div>
+      <div class="rv-card reveal">
+        <div class="rv-top">
+          <span class="rv-icon">📝</span>
+          <span class="rv-badge">Reviewer</span>
+        </div>
+        <h3>Thai Journal of Public Health</h3>
+        <p class="rv-org">Faculty of Public Health, Mahidol University · September 2026</p>
+        <p class="rv-desc">Completed a peer review for the submission "Beyond the Shadows of Informality: Addressing the Food Security Needs of Women Workers in Bangladesh."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="s-divider"></div>
+
 <!-- ════════════════════ EXPERIENCE ════════════════════ -->
 <section class="s-wrap" id="experience">
   <div class="s-inner">
@@ -898,18 +955,21 @@ footer{
       <div class="timeline">
         <div class="t-item reveal">
           <div class="t-dot"></div>
-          <p class="t-period">Expected April 2026</p>
-          <h3>BSc in Agricultural Economics &amp; Agribusiness Studies</h3>
-          <p class="t-place">Khulna Agricultural University, Khulna, Bangladesh</p>
-          <p class="t-detail">CGPA: 3.659 / 4.00 (Level 4, Semester II)</p>
-          <p class="t-detail" style="margin-top:.4rem">Coursework: Microeconomics, Macroeconomics, Mathematical Economics, Econometrics, Regression Analysis, Agricultural Policy &amp; Planning, Production Economics, Agricultural Marketing, Agribusiness Management, Agricultural Finance, Environmental Economics, Research Methodology, Entrepreneurship, HRM.</p>
+          <p class="t-period">Graduated April 2026</p>
+          <h3>BSc in Agricultural Economics</h3>
+          <p class="t-place">Faculty of Agricultural Economics &amp; Agribusiness Studies<br>Khulna Agricultural University, Khulna, Bangladesh</p>
+          <p class="t-detail">Coursework: Microeconomics, Macroeconomics, Mathematical Economics, Econometrics, Regression Analysis, Agricultural Policy &amp; Planning, Production Economics, Agricultural Marketing, Agribusiness Management, Agricultural Finance, Environmental Economics, Research Methodology, Entrepreneurship, HRM.</p>
         </div>
         <div class="t-item reveal">
           <div class="t-dot"></div>
           <p class="t-period">2020</p>
           <h3>Higher Secondary School Certificate (Science)</h3>
           <p class="t-place">Abdul Kadir Mollah City College, Dhaka, Bangladesh</p>
-          <p class="t-detail">GPA: 5.00 / 5.00 — Perfect Score</p>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-dot"></div>
+          <h3>Secondary School Certificate (Science)</h3>
+          <p class="t-place">NKM High School &amp; Homes (Nasim Kadir Mollah High School &amp; College)</p>
         </div>
       </div>
     </div>
@@ -1059,6 +1119,7 @@ footer{
 
 </main>
 
+
 <!-- Footer -->
 <footer>
   <p class="footer-name">Tanvir Ahmed</p>
@@ -1155,7 +1216,7 @@ const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>{
   nav.classList.toggle('scrolled',window.scrollY>60);
   // active section
-  const secs=['hero','research','publications','conferences','experience','awards','skills','contact'];
+  const secs=['hero','research','publications','conferences','peer-review','experience','awards','skills','contact'];
   let cur='hero';
   secs.forEach(id=>{
     const el=document.getElementById(id);
